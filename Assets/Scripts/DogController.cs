@@ -14,8 +14,7 @@ public class DogController : MonoBehaviour {
 
     public float walkPercentage = 0.3F;
     public float directionPercentage = 0.8F;
-
-    public bool walking = false;
+    
     public float direction = 0;
     public float speed = 0;
     
@@ -34,10 +33,9 @@ public class DogController : MonoBehaviour {
             walkTimer = walkInterval;
 
             if (Random.Range(0F, 1F) < walkPercentage) {
-                walking = true;
                 speed = Random.Range(minSpeed, maxSpeed);
             } else {
-                walking = false;
+                speed = 0;
             }
         }
 
@@ -48,6 +46,8 @@ public class DogController : MonoBehaviour {
                 direction = Random.Range(0, 360);
             }
         }
+
+        GetComponent<Animator>().SetFloat("Direction", direction);
 	}
 
     void FixedUpdate() {
